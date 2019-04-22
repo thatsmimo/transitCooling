@@ -1,0 +1,56 @@
+import {StyleSheet} from 'react-native'
+import {Constants,Colors} from '@common'
+
+export default StyleSheet.create({
+  container:{
+    backgroundColor:'white',
+    flexDirection:'row',
+    padding:10,
+    marginHorizontal:10,
+    marginTop:10,
+    borderWidth:0.5,
+    borderColor:Colors.Gray,
+    borderRadius:5
+  },
+  image:{
+    width:100,
+    height:100,
+  },
+  content:{
+    flex:1,
+    marginLeft:10
+  },
+  name:{
+    fontSize:14,
+    color:Colors.DarkGray,
+  },
+  sale_price:{
+    fontSize:15,
+    marginTop:7,
+    color:'black',
+  },
+  row:{
+    flexDirection:'row',
+    alignItems:'center',
+    marginVertical:10
+  },
+  btnAdd:{
+    height:40,
+    width:150,
+    borderRadius:3,
+    alignItems:'center',
+    justifyContent:'center',
+    backgroundColor:Colors.Green,
+    marginRight:20
+  },
+  add:{
+    fontSize:16,
+    fontWeight:'bold',
+    color:'white'
+  },
+  icon:{
+    width:25,
+    height:25,
+    resizeMode:'contain'
+  }
+})

@@ -1,0 +1,49 @@
+import {StyleSheet} from 'react-native'
+import {Colors} from '@common'
+export default StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:'center',
+    backgroundColor:Colors.AppColor
+  },
+  logo:{
+    width:250,
+    height:150,
+    resizeMode:'contain',
+    position:'absolute',
+    top:50,
+    alignSelf:'center',
+    tintColor: 'white'
+  },
+  content:{
+    backgroundColor:'white',
+    marginHorizontal:10,
+    paddingHorizontal:10,
+    paddingVertical:5,
+    borderRadius:3
+  },
+  separator:{
+    height:0.5,
+    backgroundColor:Colors.LightGray
+  },
+  btnSignUp:{
+    marginTop:20,
+    backgroundColor:Colors.Green,
+    borderRadius:3,
+    marginHorizontal:10
+  },
+  btnClose:{
+    width:40,
+    height:40,
+    alignItems:'center',
+    justifyContent:'center',
+    position:'absolute',
+    top:20,
+  },
+  closeIcon:{
+    width:25,
+    height:25,
+    resizeMode:'contain',
+    tintColor:'white'
+  }
+})
