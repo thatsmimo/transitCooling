@@ -10,6 +10,9 @@ export const Search = _Search
 import _Carts from './Carts'
 export const Carts = _Carts
 
+import _Quote from './Quote'
+export const Quote = _Quote
+
 import _MyProfile from './MyProfile'
 export const MyProfile = _MyProfile
 

@@ -22,7 +22,8 @@ class ProductsByCategory extends React.Component {
 
   render() {
     let { isFetching, productsByCategory, selectedCategory, openProductsByCategory, showDetail } = this.props
-    let products = productsByCategory.products
+    let products = productsByCategory.products;
+    console.log(selectedCategory)
     return (
       <SafeAreaView style={styles.container}>
         {
@@ -48,6 +49,7 @@ class ProductsByCategory extends React.Component {
 
   componentDidMount() {
     let category = this.props.navigation.state.params.category
+    console.log(category)
     this.fetchData(category)
   }
 

@@ -6,6 +6,10 @@ export const addToCart = (product)=>{
   return {type:ActionTypes.ADD_PRODUCT_TO_CART,product}
 }
 
+export const quoteCount = () => {
+  return { type: ActionTypes.QUOTE_COUNTER }
+}
+
 export const removeToCart = (product)=>{
   return {type:ActionTypes.REMOVE_PRODUCT_TO_CART,product}
 }

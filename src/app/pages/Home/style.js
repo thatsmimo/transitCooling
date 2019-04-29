@@ -29,18 +29,20 @@ export default StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0.6)"
   },
   categoryText: {
-    height: 500,
+    height: 400,
     alignItems: "center",
     justifyContent: "space-evenly",
     backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   paragraph: {
     margin:8,
+    fontFamily: 'Oswald',
     color: "#fff",
     textAlign: "center",
     fontSize: 16
   },
   yellowText: {
+    fontFamily: 'Oswald',
     fontSize: 36,
     fontWeight: "700",
     marginVertical: 15,
@@ -49,10 +51,14 @@ export default StyleSheet.create({
   },
   categoryButton: {
     fontSize: 24,
+    fontFamily: 'Oswald',
     color: "white",
     borderWidth: 1,
     borderColor: "#fff",
     margin: 5,
-    padding: 5
+    padding: 5,
+    borderRadius: 5,
+    fontWeight: 'bold',
+    marginVertical : 0,
   }
 });

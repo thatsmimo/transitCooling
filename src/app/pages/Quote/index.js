@@ -7,7 +7,7 @@ import {
   ActivityIndicator
 } from 'react-native'
 import styles from './style'
-import { Text, CartItem, Button } from '@components'
+import { Text, QuoteItem, Button } from '@components'
 import { Config, Global, Constants } from '@common'
 
 import { connect } from 'react-redux'
@@ -15,26 +15,29 @@ import { ActionCreators } from '@actions'
 import { bindActionCreators } from 'redux'
 import * as ActionTypes from '@actions/ActionTypes'
 
-class Carts extends React.Component {
+
+class Quote extends React.Component {
   render() {
-    let { carts, isRequesting } = this.props
-    let total = this.getPriceTotal()
+    let { items, isRequesting } = this.props
+    console.log(items)
     return (
       <SafeAreaView style={styles.container}>
-        {carts.length == 0 && this.renderEmptyList()}
-        {carts.length > 0 && (
+        {items.length > 0 ? (
           <FlatList
             contentContainerStyle={styles.list}
             keyExtractor={(item, index) => `${index}`}
-            data={carts}
-            renderItem={({ item }) => <CartItem item={item} onRemove={this.removeToCart} />}
+            data={items}
+            renderItem={({ item }) => <QuoteItem item={item} onRemove={this.removeToCart} />}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
           />
-        )}
+        )
+        :
+          <ActivityIndicator size="large" />
+        }
         {
           <View>
-            <Text style={styles.total}>{__.t('Total')}: {Config.Currency.symbol}{total}</Text>
-            <Button title={__.t('Checkout')} loading={isRequesting} style={styles.btnCheckout} onPress={this.checkout} />
+            {/* <Text style={styles.total}>{__.t('Total')}: {Config.Currency.symbol}{total}</Text>
+            <Button title={__.t('Checkout')} loading={isRequesting} style={styles.btnCheckout} onPress={this.checkout} /> */}
           </View>
         }
 
@@ -116,7 +119,7 @@ class Carts extends React.Component {
   }
 }
 
-Carts.defaultProps = {
+Quote.defaultProps = {
   carts: [],
   type: false
 }
@@ -138,4 +141,4 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(ActionCreators, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Carts)
+export default connect(mapStateToProps, mapDispatchToProps)(Quote)

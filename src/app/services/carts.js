@@ -1,6 +1,9 @@
 import Api from './helper/Api'
 import {Constants} from '@common'
 import * as Utils from './helper/Utils'
+import axios from 'axios'
+
+const baseurl = 'https://transitcooling.com';
 
 export const createCart = ()=>{
   return new Promise((resolve,reject)=>{
@@ -36,6 +39,37 @@ export const addItemToCart = (item,quoteId)=>{
     .catch(reject)
   })
 }
+
+export const addItemToQuote = (productId, customerId) => {
+  
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseurl}/quoteapi/index/add/product/${productId}/customer/${customerId}`)
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
+
+
+export const quoteList = (quoteId) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseurl}/quoteapi/index/index/quote_id/${quoteId}`)
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
+
 
 export const addItemsToCart = (quoteId,products)=>{
   return new Promise((resolve,reject)=>{

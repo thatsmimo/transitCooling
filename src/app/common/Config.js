@@ -4,8 +4,8 @@ import PayPal from 'react-native-paypal-wrapper'
 
 const Config = {
   MagentoConfig: {
-    baseUrl: "https://devel.transitcooling.com",
-    AccessToken: "6gaaybt4sxa0fxf8jdpqx2f363at8smj"
+    baseUrl: "https://www.transitcooling.com",
+    AccessToken: "ylqjd1k9mkv2l2y51x3lh9i0i1ihahtq"
   },
   Promotions: [
     {

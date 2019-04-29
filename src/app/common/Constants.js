@@ -21,6 +21,7 @@ const Constants = {
     ShippingInfo: 'ShippingInfo',
     ShippingAddress: 'ShippingAddress',
     PaymentInfo: 'PaymentInfo',
+    Quote: 'Qoute',
     AddAddress: 'AddAddress',
     MyOrders: 'MyOrders',
     SubCategory: 'SubCategory',
@@ -48,7 +49,7 @@ const Constants = {
       icon: Icons.ArFlag
     }
   ],
-  FontFamily: 'AvertaStd-Regular', //Bookerly-Regular
+  FontFamily: 'Oswald', //Bookerly-Regular
   Api: {
     Limit: 20
   },

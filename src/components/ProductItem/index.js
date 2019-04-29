@@ -55,10 +55,10 @@ class ProductItem extends React.Component {
 
         <View style={{ flex: 1 }} />
         <View style={styles.bottomView}>
-          <TouchableOpacity onPress={this.shareApp}>
+          <TouchableOpacity onPress={() => this.shareApp(item)}>
             <Image source={Icons.Share} style={styles.icon} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.addToCart}>
+          <TouchableOpacity onPress={() => onPress(item)}>
             <Image source={Icons.Cart} style={styles.icon} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.addToWishList}>
@@ -79,13 +79,14 @@ class ProductItem extends React.Component {
 
   addToCart = () => {
     this.props.addToCart(this.props.item)
+    // onPress(item)
   }
 
-  shareApp = () => {
+  shareApp = (item) => {
     Share.share({
-      title: "Hubay",
-      message: "Great App!!!",
-      url: "https://www.hubay.net/"
+      title: "Transit Cooling",
+      message: item.name,
+      url: "https://transitcooling.com/" + item.sku +"title.html"
     })
   }
 }

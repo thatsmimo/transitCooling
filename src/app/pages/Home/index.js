@@ -26,9 +26,18 @@ const TEXT4 = "Transit Cooling Solutions has developed a superior line of coolin
 const TEXT5 = "Transit Cooling Solutions has developed and sourced the most comprehensive line or cooling products in the market specifically for school bus applications. We understand that when school is in, the buses have to be moving students, you can’t afford to have down time. With us, you can ensure that the kids arrive on time! Welcome to the premier supplier of cooling products in your industry. This web site will be your first stop to keep your fleet in motion!"
 
 
+
 class Home extends React.Component {
   state = {
     loading: true,
+  }
+
+  navigateToCategory = () => {
+    // category = {
+    //   name: ,
+    //   id: ,
+    // }
+    this.props.navigation.navigate(Constants.Screen.SubCategory)
   }
 
   render() {
@@ -44,8 +53,10 @@ class Home extends React.Component {
           <Promotions promotions={Config.Promotions} onPress={this.openPromotion} />
             <ImageBackground source={require('../../../../assets/images/main_bg.png')} style={styles.imageBackground} >
               <View style={[{paddingTop:15},styles.categoryText]}>
+                <View style={{flexDirection:'row'}}>
                 <Text style={styles.categoryButton}>TRANSIT BUS</Text>
-                <Text style={styles.categoryButton}>COACH BUS</Text>
+                  <Text style={styles.categoryButton}>COACH BUS</Text>
+                </View>
                 <Text style={styles.categoryButton}>SCHOOL BUS</Text>
                 <Text style={styles.categoryButton}>COMPLETE RADIATORS</Text>
                 <Text style={styles.categoryButton}>CHARGE AIR COOLERS</Text>
@@ -59,7 +70,7 @@ class Home extends React.Component {
               </View>
               <Image style={{marginTop:8,marginBottom:8}} source={require('../../../../assets/images/brand_logos.png')} />
               <View style={styles.imageBackground1}> 
-                <Text style={{textAlign:'center',color:"black",fontSize:28,fontWeight:"700",marginBottom:8}}>- MEMBERS OF -</Text>
+              <Text style={{ textAlign: 'center', color: "black", fontSize: 28, fontWeight: "700", marginBottom: 8, fontFamily: 'Oswald'}}>- MEMBERS OF -</Text>
                 <Image source={require('../../../../assets/images/UMC.png')} />
                 <Image source={require('../../../../assets/images/OPTA.png')} />
                 <Image source={require('../../../../assets/images/OMCA.png')} />
@@ -67,14 +78,14 @@ class Home extends React.Component {
             </ImageBackground>
             <ImageBackground style={styles.imageBackgroud2} source={require('../../../../assets/images/second_part_img.jpg')}>
               <View style={{ backgroundColor:'rgba(0,0,0,0.6)',height:400}}>
-                <Text style={{ fontSize: 32, color: '#fff', marginTop: 30, marginLeft: 18 }}>HIGHWAY COACH TRANSIT BUS RADIATORS</Text>
-                <Text style={{ color: '#fff', marginTop: 25, marginLeft: 15 }}>{TEXT4}</Text>
+                <Text style={{ fontSize: 32, color: '#fff', marginTop: 30, marginLeft: 18, fontFamily: 'Oswald'}}>HIGHWAY COACH TRANSIT BUS RADIATORS</Text>
+                <Text style={{ color: '#fff', marginTop: 25, marginLeft: 15, fontFamily: 'Oswald'}}>{TEXT4}</Text>
               </View>
             </ImageBackground>
             <ImageBackground style={styles.imageBackgroud2} source={require('../../../../assets/images/second_part_img2.jpg')}>
               <View style={{ backgroundColor: 'rgba(0,0,0,0.6)', height: 400 }}>
-                <Text style={{ fontSize: 32, color: '#fff', marginTop: 40, marginLeft: 18 }}>SCHOOL BUS RADIATORS</Text>
-                <Text style={{ color: '#fff', marginTop: 25, marginLeft: 15 }}>{TEXT5}</Text>
+                <Text style={{ fontSize: 32, color: '#fff', marginTop: 40, marginLeft: 18, fontFamily: 'Oswald'}}>SCHOOL BUS RADIATORS</Text>
+                <Text style={{ color: '#fff', marginTop: 25, marginLeft: 15, fontFamily: 'Oswald'}}>{TEXT5}</Text>
               </View>
             </ImageBackground>
         </ScrollView>

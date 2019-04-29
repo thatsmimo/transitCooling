@@ -33,7 +33,7 @@ export default function base(state = {}, action){
     case ActionTypes.ADD_PRODUCT_TO_CART:
     {
       var carts = (typeof state.carts == "undefined") ? [] : state.carts
-      const cartIndex = -1
+      var cartIndex = -1
       carts.forEach((item,index)=>{
         if (item.id == action.product.id) {
           cartIndex = index
@@ -69,7 +69,7 @@ export default function base(state = {}, action){
     case ActionTypes.CHANGE_PRODUCT_QUANTITY:
     {
       var carts = state.carts
-      const cartIndex = 0
+      var cartIndex = 0
       carts.forEach((item,index)=>{
         if (item.id == action.product.id) {
           cartIndex = index
@@ -149,6 +149,16 @@ export default function base(state = {}, action){
         isRequesting:false,
         message:"",
         myOrders:action.orders,
+      }
+    }
+    case ActionTypes.QUOTE_COUNTER:
+    {
+        var quoteCount = (typeof state.quoteCount == "undefined") ? 1 : state.quoteCount+1;
+        
+      return{
+        ...state,
+        type: action.type,
+        quoteCount: quoteCount
       }
     }
     default:

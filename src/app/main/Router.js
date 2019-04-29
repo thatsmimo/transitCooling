@@ -25,6 +25,7 @@ import AddAddressScreen from './screens/AddAddressScreen'
 import MyOrdersScreen from './screens/MyOrdersScreen'
 import SubCategoryScreen from './screens/SubCategoryScreen'
 import FilterScreen from './screens/FilterScreen'
+import QuoteScreen from './screens/QuoteScreen'
 
 const stackNavigatorConfiguration = {
   mode: 'card',
@@ -65,6 +66,11 @@ cartsTabScreens[Constants.Screen.PaymentInfo] = { screen: PaymentInfoScreen }
 cartsTabScreens[Constants.Screen.SignIn] = { screen: SignInScreen }
 const cartsStack = createStackNavigator(cartsTabScreens, stackNavigatorConfiguration)
 
+
+const quoteTabsScreen = {}
+quoteTabsScreen[Constants.Screen.Quote] = { screen: QuoteScreen }
+const quoteStack = createStackNavigator(quoteTabsScreen, stackNavigatorConfiguration)
+
 const profileTabScreens = {}
 profileTabScreens[Constants.Screen.MyProfile] = { screen: MyProfileScreen }
 profileTabScreens[Constants.Screen.SignIn] = { screen: SignInScreen }
@@ -80,6 +86,7 @@ const tabScreens = {}
 tabScreens[Constants.Screen.Home] = { screen: homeStack }
 tabScreens[Constants.Screen.Deals] = { screen: dealsStack }
 tabScreens[Constants.Screen.Search] = { screen: searchStack }
+tabScreens[Constants.Screen.Quote] = { screen: quoteStack }
 tabScreens[Constants.Screen.Carts] = { screen: cartsStack }
 tabScreens[Constants.Screen.MyProfile] = { screen: profileStack }
 
@@ -110,12 +117,15 @@ const mainTab = createBottomTabNavigator(tabScreens, {
         case Constants.Screen.MyProfile:
           icon = Icons.User
           break;
+        case Constants.Screen.Quote:
+          icon = Icons.Cart
+          break;
         default:
           return null
       }
-
       return <TabBarItem icon={icon} tintColor={tintColor} routeName={routeName} />
-    }
+    },
+    tabBarOptions: { activeTintColor: '#f8b020' }
   }),
   tabBarOptions: {
     showLabel: false

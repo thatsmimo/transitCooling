@@ -10,6 +10,7 @@ class SubCategoryScreen extends React.Component {
 
   render() {
     const { navigation } = this.props
+    console.log(navigation)
     return <SubCategory
       navigation={navigation}
       openProductsByCategory={(category) => navigation.navigate(Constants.Screen.ProductsByCategory, { category })}

@@ -23,7 +23,7 @@ class WishListItem extends React.Component {
 
             <View style={styles.row}>
               <TouchableOpacity style={styles.btnAdd} onPress={()=>onAddToCart(item)}>
-                <Text style={styles.add}>{__.t('Add to Cart')}</Text>
+                <Text style={styles.add}>{__.t('Cart')}</Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={()=>onRemove(item)}>
                 <Image source={Icons.Delete} style={styles.icon} />

@@ -16,7 +16,7 @@ import {Text} from '@components'
 
 class TabBarItem extends React.Component {
   render(){
-    let {icon,tintColor,routeName,carts} = this.props
+    let { icon, tintColor, routeName, carts, quoteCounting} = this.props
     return (
       <View>
         <Image source={icon} style={[styles.icon,{tintColor}]}/>
@@ -25,19 +25,26 @@ class TabBarItem extends React.Component {
             <Text style={styles.text}>{carts.length}</Text>
           </View>
         )}
+        {routeName == 'Qoute' && quoteCounting > 0 && (
+          <View style={styles.badge}>
+            <Text style={styles.text}>{quoteCounting}</Text>
+          </View>
+        )}
       </View>
     )
   }
 }
 
 TabBarItem.defaultProps = {
-  carts:[]
+  carts:[],
+  quoteCounting : 0,
 }
 
 function mapStateToProps({cartsReducers}){
   return {
     carts:cartsReducers.carts,
-    reload:cartsReducers.reload
+    reload:cartsReducers.reload,
+    quoteCounting: cartsReducers.quoteCount,
   }
 }
 

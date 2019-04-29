@@ -43,6 +43,9 @@ export const DealItem = _DealItem
 import _CartItem from './CartItem'
 export const CartItem = _CartItem
 
+import _QuoteItem from './QuoteItem'
+export const QuoteItem = _QuoteItem
+
 import _Quantity from './Quantity'
 export const Quantity = _Quantity
 
