@@ -14,18 +14,38 @@ class QuoteScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items : []
+      items : [],
+      loader : false
     }
   }
 
+
+  
+
   componentDidMount = async () => {
-    var quoteId = await AsyncStorage.getItem('quoteId');
-    console.log(quoteId);
-    var response = await API.quoteList(quoteId);
-    console.log('quoteList', response);
-    this.setState({ items: response.items})
+    this.reload();
     this.onLogin = Global.EventEmitter.addListener(Constants.EventEmitterName.onLogin, this.onLogin)
   }
+
+
+  reload = async () => {
+    var quoteId = await AsyncStorage.getItem('quoteId');
+    console.log(quoteId);
+    if (quoteId != '') {
+      var response = await API.quoteList(quoteId);
+      console.log('quoteList', response);
+      this.setState({ items: response.items })
+    }
+  }
+
+  componentWillReceiveProps() {
+    this.reload();
+  }
+
+  clear = () => {
+    console.log('clear')
+  }
+
 
   componentWillUnmount = () => {
     this.onLogin.remove()
@@ -41,7 +61,11 @@ class QuoteScreen extends React.Component {
       items = {this.state.items}
       navigation={navigation}
       signIn={() => navigation.navigate(Constants.Screen.SignIn)}
-      showShippingAddress={() => navigation.navigate(Constants.Screen.ShippingAddress)} />
+      showShippingAddress={() => navigation.navigate(Constants.Screen.ShippingAddress)}
+      
+      clear = {this.clear} 
+      loader = {this.state.loader}
+      />
   }
 }
 

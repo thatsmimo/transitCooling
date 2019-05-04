@@ -3,8 +3,11 @@ import {
   View,
   SafeAreaView,
   FlatList,
-  TouchableOpacity,
-  ActivityIndicator
+  AsyncStorage,
+  ActivityIndicator,
+  ScrollView,
+  TextInput,
+  StyleSheet
 } from 'react-native'
 import styles from './style'
 import { Text, QuoteItem, Button } from '@components'
@@ -14,33 +17,140 @@ import { connect } from 'react-redux'
 import { ActionCreators } from '@actions'
 import { bindActionCreators } from 'redux'
 import * as ActionTypes from '@actions/ActionTypes'
+import * as API from '@services';
 
+
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
+  }
+})
 
 class Quote extends React.Component {
+
+  constructor (props) {
+    super(props);
+    this.state = {
+      items : [],
+      comment : '',
+      email : '',
+      firstName : '',
+      company : '',
+      telephone : '',
+      loader : false,
+    }
+  }
+
+  componentWillMount() {
+    this.setState({loader : this.props.loader})
+  }
+
   render() {
-    let { items, isRequesting } = this.props
-    console.log(items)
+    let { items, isRequesting, loader } = this.props
+    console.log(this.props)
+    
     return (
+      (this.state.loader) ? 
+      <View style={[style.container, style.horizontal]}>
+          <ActivityIndicator size="large" />
+      </View>
+      
+        :
       <SafeAreaView style={styles.container}>
-        {items.length > 0 ? (
+        {this.state.items.length > 0 ? (
+          <ScrollView>
           <FlatList
             contentContainerStyle={styles.list}
             keyExtractor={(item, index) => `${index}`}
-            data={items}
+            data={this.state.items}
             renderItem={({ item }) => <QuoteItem item={item} onRemove={this.removeToCart} />}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
           />
+          <View style={{marginHorizontal:'8%'}}>
+              <Text style={{marginVertical:5}}>Do you have a general remark with this quote request?</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,}}
+                multiline={true}
+                numberOfLines={4}
+                onChangeText={(text) => this.setState({comment : text})}
+                value = {this.state.value}
+                placeholder='Put your comment'
+              />
+
+              <Text style={{ marginVertical: 5 }}>Email</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,
+                }}
+                onChangeText={(text) => this.setState({ email: text })}
+                value={this.state.email}
+              />
+
+              <Text style={{ marginVertical: 5 }}>First Name</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,
+                }}
+                onChangeText={(text) => this.setState({ firstName: text })}
+                value={this.state.firstName}
+              />
+
+
+              <Text style={{ marginVertical: 5 }}>Last Name</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,
+                }}
+                onChangeText={(text) => this.setState({ lastName: text })}
+                value={this.state.lastName}
+              />
+
+
+              <Text style={{ marginVertical: 5 }}>Telephone</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,
+                }}
+                keyboardType='number-pad'
+                onChangeText={(text) => this.setState({ telephone: text })}
+                value={this.state.telephone}
+              />
+
+              
+              <Text style={{ marginVertical: 5 }}>Company</Text>
+              <TextInput
+                style={{
+                  width: '95%', backgroundColor: '#fff', borderBottomColor: '#000000',
+                  borderBottomWidth: 1,
+                }}
+                onChangeText={(text) => this.setState({ company: text })}
+                value={this.state.company}
+              />
+
+              <View style={{marginTop: 10}}>
+                <Button title='Submit Quote Request' style={styles.btnCheckout} onPress={this.submit} />
+              </View>
+          </View>
+          </ScrollView>
+
         )
         :
-          <ActivityIndicator size="large" />
-        }
-        {
-          <View>
-            {/* <Text style={styles.total}>{__.t('Total')}: {Config.Currency.symbol}{total}</Text>
-            <Button title={__.t('Checkout')} loading={isRequesting} style={styles.btnCheckout} onPress={this.checkout} /> */}
+          <View style={styles.wrapper}>
+            <Text style={styles.message}>{__.t('Empty List')}</Text>
           </View>
         }
-
       </SafeAreaView>
     )
   }
@@ -53,13 +163,27 @@ class Quote extends React.Component {
     )
   }
 
+
+  submit = async () => {
+    this.setState({ loader: true })
+    var quoteId = await AsyncStorage.getItem('quoteId');
+    console.log(quoteId);
+    API.submitQuote(this.state, quoteId).then(data => {
+      console.log(data);
+      this.setState({ loader: false })
+      this.props.clear();
+    })
+    .catch(err => {
+      console.log(err);
+      this.setState({ loader: false })
+    })
+  }
+
   signOut = () => {
     this.props.signOut()
   }
 
-  componentDidMount = () => {
-    this.onLogout = Global.EventEmitter.addListener(Constants.EventEmitterName.onLogout, this.signOut)
-  }
+  
 
   componentWillUnmount = () => {
     this.onLogout.remove()
@@ -77,12 +201,11 @@ class Quote extends React.Component {
     return total
   }
 
-  checkout = () => {
-    this.isGetUserInfo = true
-    this.props.getCustomerInfo(this.props.userToken)
-  }
 
-  componentWillReceiveProps(props) {
+  async componentWillReceiveProps(props) {
+    // var response = await this.props.getCustomerInfo();
+    // console.log('userDetails', response)
+    this.setState({ items: props.items, loader: props.loader})
     if (props.type == ActionTypes.GET_CUSTOMER_INFO_FAIL && this.isGetUserInfo == true) {
       this.isLogin = true
       this.props.signIn()

@@ -71,6 +71,37 @@ export const quoteList = (quoteId) => {
 }
 
 
+export const submitQuote = (data, quoteId) => {
+  return new Promise((resolve, reject) => {
+    // var bodyFormData = new FormData();
+
+    // bodyFormData.set('client_comment', data.comment);
+    // bodyFormData.set('customer_email', data.email);
+    // bodyFormData.set('customer_firstname', data.firstName);
+    // bodyFormData.set('customer_lastname', data.lastName);
+    // bodyFormData.set('customer_phone', data.telephone);
+    // bodyFormData.set('customer_company', data.company);
+
+    axios.post(`${baseurl}/quoteapi/index/request/quote_id/${quoteId}`, {
+      client_comment: data.comment,
+      customer_email: data.email,
+      customer_firstname: data.firstName,
+      customer_lastName: data.lastName,
+      customer_phone: data.telephone,
+      customer_company: data.company,
+    })
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
+
+
 export const addItemsToCart = (quoteId,products)=>{
   return new Promise((resolve,reject)=>{
     var count = 0

@@ -31,6 +31,8 @@ class Detail extends React.Component {
   render() {
     let { products, navigation, showDetail } = this.props
     let product = navigation.state.params.product
+    console.log(Utils.getCustomAttribute(product.custom_attributes, "make"))
+    console.log(product);
     return (
       <SafeAreaView style={styles.container}>
         {this.state.loading ?
@@ -41,6 +43,10 @@ class Detail extends React.Component {
             <View style={styles.separator} />
             <Text style={styles.name}>{product.name}</Text>
             {/* <Text style={styles.price}>{Config.Currency.symbol}{product.price}</Text> */}
+            <View>
+              <Text style={styles.price}>Description : {Utils.getCustomAttribute(product.custom_attributes, "description")}</Text>
+              <Text style={styles.price}>Note : {Utils.getCustomAttribute(product.custom_attributes, "notes")}</Text>
+            </View>
 
             <TouchableOpacity style={styles.addCart} onPress={this.addToQuote}>
               <Text style={styles.addCartText}>{'Add to Quote'}</Text>

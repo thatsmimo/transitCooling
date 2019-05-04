@@ -18,7 +18,7 @@ export default StyleSheet.create({
     borderRadius:3,
     backgroundColor:Colors.Green,
     marginBottom:10,
-    marginHorizontal:10
+    marginHorizontal:'8%'
   },
   wrapper:{
     flex:1,
