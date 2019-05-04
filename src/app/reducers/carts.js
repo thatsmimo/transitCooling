@@ -153,7 +153,7 @@ export default function base(state = {}, action){
     }
     case ActionTypes.QUOTE_COUNTER:
     {
-        var quoteCount = (typeof state.quoteCount == "undefined") ? 1 : state.quoteCount+1;
+        var quoteCount = action.counteer;
         
       return{
         ...state,

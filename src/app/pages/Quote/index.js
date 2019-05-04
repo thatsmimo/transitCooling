@@ -7,7 +7,8 @@ import {
   ActivityIndicator,
   ScrollView,
   TextInput,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native'
 import styles from './style'
 import { Text, QuoteItem, Button } from '@components'
@@ -48,11 +49,12 @@ class Quote extends React.Component {
   }
 
   componentWillMount() {
-    this.setState({loader : this.props.loader})
+    // this.setState({loader : this.props.loader})
   }
 
   render() {
-    let { items, isRequesting, loader } = this.props
+
+    let { items, isRequesting } = this.props
     console.log(this.props)
     
     return (
@@ -139,9 +141,9 @@ class Quote extends React.Component {
                 value={this.state.company}
               />
 
-              <View style={{marginTop: 10}}>
-                <Button title='Submit Quote Request' style={styles.btnCheckout} onPress={this.submit} />
-              </View>
+              <TouchableOpacity style={styles.addCart} onPress={this.submit}>
+                  <Text style={styles.addCartText}>{'Submit Quote Request'}</Text>
+              </TouchableOpacity>
           </View>
           </ScrollView>
 
@@ -165,17 +167,19 @@ class Quote extends React.Component {
 
 
   submit = async () => {
-    this.setState({ loader: true })
+    // this.props.loaderChange()
     var quoteId = await AsyncStorage.getItem('quoteId');
     console.log(quoteId);
     API.submitQuote(this.state, quoteId).then(data => {
       console.log(data);
-      this.setState({ loader: false })
-      this.props.clear();
+      if(data.error == false) {
+        alert('Quote has been submitted successfully, Id is : ' + data.increment_id)
+        this.props.clear();
+      }
+      
     })
     .catch(err => {
       console.log(err);
-      this.setState({ loader: false })
     })
   }
 
@@ -205,7 +209,7 @@ class Quote extends React.Component {
   async componentWillReceiveProps(props) {
     // var response = await this.props.getCustomerInfo();
     // console.log('userDetails', response)
-    this.setState({ items: props.items, loader: props.loader})
+    this.setState({ items: props.items})
     if (props.type == ActionTypes.GET_CUSTOMER_INFO_FAIL && this.isGetUserInfo == true) {
       this.isLogin = true
       this.props.signIn()
@@ -249,12 +253,8 @@ Quote.defaultProps = {
 
 function mapStateToProps({ cartsReducers, authReducers }) {
   return {
-    carts: cartsReducers.carts,
     reload: cartsReducers.reload,
     type: authReducers.type,
-    userToken: authReducers.userToken,
-    cartType: cartsReducers.type,
-    cartMessage: cartsReducers.message,
     quoteId: cartsReducers.quoteId,
     isRequesting: authReducers.type == ActionTypes.GET_CUSTOMER_INFO_PENDING || cartsReducers.type == ActionTypes.CREATE_CART_PENDING || cartsReducers.type == ActionTypes.ADD_ITEMS_TO_CART_PENDING
   }

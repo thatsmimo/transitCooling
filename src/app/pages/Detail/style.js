@@ -18,24 +18,24 @@ export default StyleSheet.create({
   },
   name:{
     margin:10,
-    fontSize:18,
-    fontWeight:'bold'
+    fontSize:28,
+    fontWeight:'bold',
+    color:'#f9b020'
   },
   price:{
     marginHorizontal:10,
     fontSize:15,
-    color:Colors.DrakGray
+    color:'#fff'
   },
   addCart:{
     height:40,
     backgroundColor:Colors.Green,
     alignItems:'center',
     justifyContent:'center',
-    borderRadius:3,
     margin:10
   },
   addCartText:{
-    fontSize:16,
+    fontSize:15,
     fontWeight:'bold',
     color:'white'
   },

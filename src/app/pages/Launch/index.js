@@ -42,7 +42,7 @@ class Launch extends React.Component {
   componentWillReceiveProps(nextProps){
     if (nextProps.type == ActionTypes.GET_ADMIN_TOKEN_SUCCESS && this.isFetching) {
       this.isFetching = false
-      let lang = this.props.lang
+      let lang = 'en';
       if (lang) {
         __.locale = lang
         this.props.showHome()

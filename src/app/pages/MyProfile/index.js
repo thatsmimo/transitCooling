@@ -28,9 +28,9 @@ class MyProfile extends React.Component {
           {customerInfo && <SettingItem icon={Icons.Address} title={__.t('My Address Book')} onPress={showMyAddress} />}
           <SettingItem icon={Icons.FavoriteSelected} title={__.t('My WishList')} onPress={showWishList} />
           <SettingItem icon={Icons.Feedback} title={__.t('Feedback')} onPress={this.handleEmail} />
-          <SettingItem icon={Icons.Language} title={__.t('Change Language')} onPress={showLanguages} />
-          <SettingItem icon={Icons.Share} title={__.t('Share App')} onPress={this.shareApp} />
-          <SettingItem icon={Icons.Star} title={__.t('Rate App')} onPress={this.rateApp} />
+          {/* <SettingItem icon={Icons.Language} title={__.t('Change Language')} onPress={showLanguages} /> */}
+          {/* <SettingItem icon={Icons.Share} title={__.t('Share App')} onPress={this.shareApp} />
+          <SettingItem icon={Icons.Star} title={__.t('Rate App')} onPress={this.rateApp} /> */}
           {/* {customerInfo && <SettingItem icon={Icons.SignOut} title={__.t('Sign Out')} onPress={this.signOut} />} */}
         </ScrollView>
       </SafeAreaView>

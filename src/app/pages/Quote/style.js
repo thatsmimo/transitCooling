@@ -15,10 +15,21 @@ export default StyleSheet.create({
     marginVertical:10
   },
   btnCheckout:{
-    borderRadius:3,
     backgroundColor:Colors.Green,
     marginBottom:10,
     marginHorizontal:'8%'
+  },
+  addCart: {
+    height: 40,
+    backgroundColor: Colors.Green,
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10
+  },
+  addCartText: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: 'white'
   },
   wrapper:{
     flex:1,

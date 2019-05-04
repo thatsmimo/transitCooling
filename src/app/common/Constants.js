@@ -4,7 +4,7 @@ import Icons from './Icons'
 const Constants = {
   Screen: {
     Home: 'Home',
-    Deals: 'Deals',
+    Deals: 'Category',
     Search: 'Search',
     Carts: 'Carts',
     MyProfile: 'MyProfile',

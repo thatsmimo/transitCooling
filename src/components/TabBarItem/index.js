@@ -15,6 +15,17 @@ import * as ActionTypes from '@actions/ActionTypes'
 import {Text} from '@components'
 
 class TabBarItem extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      quoteCounter : ''
+    }
+  }
+  componentDidMount() {
+    this.setState({ quoteCounter: this.props. quoteCounting})
+  }
+  
   render(){
     let { icon, tintColor, routeName, carts, quoteCounting} = this.props
     return (
@@ -25,9 +36,14 @@ class TabBarItem extends React.Component {
             <Text style={styles.text}>{carts.length}</Text>
           </View>
         )}
-        {routeName == 'Qoute' && quoteCounting > 0 && (
+        {routeName == 'Qoute' && this.state.quoteCounter > 0 && (
           <View style={styles.badge}>
-            <Text style={styles.text}>{quoteCounting}</Text>
+            <Text style={styles.text}>{this.state.quoteCounter}</Text>
+          </View>
+        )}
+        {routeName == 'Qoute' && this.state.quoteCounter == 0 && (
+          <View>
+            
           </View>
         )}
       </View>
@@ -37,10 +53,11 @@ class TabBarItem extends React.Component {
 
 TabBarItem.defaultProps = {
   carts:[],
-  quoteCounting : 0,
+  quoteCounting : '',
 }
 
 function mapStateToProps({cartsReducers}){
+  this.setState({ quoteCounter: cartsReducers.quoteCount})
   return {
     carts:cartsReducers.carts,
     reload:cartsReducers.reload,

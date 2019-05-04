@@ -47,7 +47,7 @@ class SignIn extends React.Component {
           />
         </View>
         <Button title={__.t('Sign In')} style={styles.btnSignIn} loading={type == ActionTypes.SIGN_IN_PENDING} onPress={this.signIn} />
-        <Text style={styles.text}>{__.t('Do you have account with Hubay?')} <Text style={styles.signUp} onPress={signUp}>{__.t('Sign Up')}</Text></Text>
+        <Text style={styles.text}>Do you have account with Transit Cooling?<Text style={styles.signUp} onPress={signUp}>{__.t('Sign Up')}</Text></Text>
 
         <TouchableOpacity style={styles.btnClose} onPress={goBack}>
           <Image source={Icons.Close} style={styles.closeIcon} />
