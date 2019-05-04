@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   View,
-  ImageBackground,
+  AsyncStorage,
   TouchableOpacity,
   Image
 } from 'react-native'
@@ -13,6 +13,8 @@ import { connect } from 'react-redux'
 import { ActionCreators } from '@actions'
 import { bindActionCreators } from 'redux'
 import * as ActionTypes from '@actions/ActionTypes'
+import * as API from '@services';
+
 
 class QuoteItem extends React.Component {
   render() {
@@ -31,7 +33,7 @@ class QuoteItem extends React.Component {
             {/* <Text style={styles.sale_price}>{Config.Currency.symbol}{item.price}</Text>
             {item.free_ship && <Text style={styles.freeShipping}>{__.t('Free Shipping')}</Text>} */}
             
-            <TouchableOpacity onPress={() => onRemove(item)} style={styles.btnDelete}>
+            <TouchableOpacity onPress={() => this.removeItem(item.item_id)} style={styles.btnDelete}>
               <Image source={Icons.Delete} style={styles.icon} />
             </TouchableOpacity>
           </View>
@@ -40,14 +42,37 @@ class QuoteItem extends React.Component {
     )
   }
 
-  onChangeQuantity = (qty) => {
-    this.props.changeProductQuantity(this.props.item, qty)
+
+  removeItem = async (itemId) => {
+    var response = await API.deleteQuote(itemId);
+    console.log(response);
+    if (response.success == true) {
+      var currentCount = this.props.quoteCounter-1 ; 
+      if (currentCount == 0) {
+        await AsyncStorage.removeItem('quoteId');
+      }
+      this.props.quoteCount(currentCount)
+      this.props.refresh();
+      alert('Quote Item is Removed')
+    }
+  }
+
+
+  onChangeQuantity = async (qty) => {
+    var response = await API.changeQtyToQuote(this.props.item.item_id, qty);
+    console.log(response)
+    // this.props.changeProductQuantity(this.props.item, qty)
   }
 }
 
-function mapStateToProps({ productsReducers }) {
+QuoteItem.defaultProps = {
+  quoteCounter: 0
+}
+
+function mapStateToProps({ productsReducers, cartsReducers }) {
   return {
-    reload: productsReducers.reload
+    reload: productsReducers.reload,
+    quoteCounter: cartsReducers.quoteCount
   }
 }
 

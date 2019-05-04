@@ -154,7 +154,6 @@ export default function base(state = {}, action){
     case ActionTypes.QUOTE_COUNTER:
     {
         var quoteCount = action.counteer;
-        
       return{
         ...state,
         type: action.type,

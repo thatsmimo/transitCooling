@@ -54,7 +54,7 @@ class Quote extends React.Component {
 
   render() {
 
-    let { items, isRequesting } = this.props
+    let { items, isRequesting, refresh } = this.props
     console.log(this.props)
     
     return (
@@ -71,7 +71,7 @@ class Quote extends React.Component {
             contentContainerStyle={styles.list}
             keyExtractor={(item, index) => `${index}`}
             data={this.state.items}
-            renderItem={({ item }) => <QuoteItem item={item} onRemove={this.removeToCart} />}
+                renderItem={({ item }) => <QuoteItem item={item} refresh={refresh} onRemove={this.removeToQuote} />}
             ItemSeparatorComponent={() => <View style={styles.separator} />}
           />
           <View style={{marginHorizontal:'8%'}}>
@@ -193,8 +193,8 @@ class Quote extends React.Component {
     this.onLogout.remove()
   }
 
-  removeToCart = (item) => {
-    this.props.removeToCart(item)
+  removeToQuote = () => {
+
   }
 
   getPriceTotal = () => {

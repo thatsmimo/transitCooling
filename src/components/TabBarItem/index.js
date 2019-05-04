@@ -22,6 +22,14 @@ class TabBarItem extends React.Component {
       quoteCounter : ''
     }
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      quoteCounter: nextProps.quoteCounting,
+    });
+  }
+
+
   componentDidMount() {
     this.setState({ quoteCounter: this.props. quoteCounting})
   }
@@ -56,8 +64,9 @@ TabBarItem.defaultProps = {
   quoteCounting : '',
 }
 
+
+
 function mapStateToProps({cartsReducers}){
-  this.setState({ quoteCounter: cartsReducers.quoteCount})
   return {
     carts:cartsReducers.carts,
     reload:cartsReducers.reload,

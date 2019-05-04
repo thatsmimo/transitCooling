@@ -5,6 +5,9 @@ import { Icons, Constants, Global } from '@common';
 import { View, AsyncStorage, StyleSheet, ActivityIndicator} from 'react-native';
 import * as API from '@services';
 import * as Action from '@actions'
+import { connect } from 'react-redux'
+import { ActionCreators } from '@actions'
+import { bindActionCreators } from 'redux'
 
 
 const styles = StyleSheet.create({
@@ -70,7 +73,7 @@ class QuoteScreen extends React.Component {
   clear = async () => {
     // this.setState({loader :true})
     await AsyncStorage.removeItem('quoteId');
-    Action.ActionCreators.quoteCount(0)
+    this.props.quoteCount(0);
     this.reload();
     // this.setState({ loader: false });
     console.log('clear')
@@ -88,7 +91,6 @@ class QuoteScreen extends React.Component {
 
   render() {
     const { navigation } = this.props
-    console.log('props', this.props)
     return (
       (!this.state.loader) ?
       <Quote
@@ -97,6 +99,7 @@ class QuoteScreen extends React.Component {
         signIn={() => navigation.navisgate(Constants.Screen.SignIn)}
         showShippingAddress={() => navigation.navigate(Constants.Screen.ShippingAddress)}
         clear = {this.clear} 
+        refresh={this.reload}
         // loader = {this.state.loader}
         // loaderChange = {this.loaderChnage}
       />
@@ -108,4 +111,17 @@ class QuoteScreen extends React.Component {
   }
 }
 
-export default QuoteScreen;
+
+function mapStateToProps({ cartsReducers }) {
+  
+
+  return {
+    quoteCounter: cartsReducers.quoteCount,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (QuoteScreen)

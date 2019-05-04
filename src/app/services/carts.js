@@ -40,8 +40,7 @@ export const addItemToCart = (item,quoteId)=>{
   })
 }
 
-export const addItemToQuote = (productId, customerId) => {
-  
+export const addItemToQuote = (productId, customerId) => { 
   return new Promise((resolve, reject) => {
     axios.get(`${baseurl}/quoteapi/index/add/product/${productId}/customer/${customerId}`)
       .then(function (response) {
@@ -55,6 +54,35 @@ export const addItemToQuote = (productId, customerId) => {
   })
 }
 
+
+export const changeQtyToQuote = (itemId, qty) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseurl}/quoteapi/index/update/item_id/${itemId}/item_qty/${qty}/`)
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
+
+
+export const deleteQuote = (itemId) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseurl}/quoteapi/index/remove/item_id/${itemId}/`)
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
 
 export const quoteList = (quoteId) => {
   return new Promise((resolve, reject) => {
