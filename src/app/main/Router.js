@@ -26,6 +26,8 @@ import MyOrdersScreen from './screens/MyOrdersScreen'
 import SubCategoryScreen from './screens/SubCategoryScreen'
 import FilterScreen from './screens/FilterScreen'
 import QuoteScreen from './screens/QuoteScreen'
+import QuoteListScreen from './screens/QuoteListScreen'
+import QuoteViewScreen from './screens/QuoteView'
 
 const stackNavigatorConfiguration = {
   mode: 'card',
@@ -80,6 +82,8 @@ profileTabScreens[Constants.Screen.MyAddress] = { screen: MyAddressScreen }
 profileTabScreens[Constants.Screen.Feedback] = { screen: FeedbackScreen }
 profileTabScreens[Constants.Screen.AddAddress] = { screen: AddAddressScreen }
 profileTabScreens[Constants.Screen.MyOrders] = { screen: MyOrdersScreen }
+profileTabScreens[Constants.Screen.QuoteList] = { screen: QuoteListScreen }
+profileTabScreens[Constants.Screen.QuoteView] = { screen: QuoteViewScreen }
 const profileStack = createStackNavigator(profileTabScreens, stackNavigatorConfiguration)
 
 const tabScreens = {}

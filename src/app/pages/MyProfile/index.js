@@ -19,7 +19,7 @@ import * as ActionTypes from '@actions/ActionTypes'
 
 class MyProfile extends React.Component {
   render() {
-    let { showWishList, showLanguages, showMyAddress, showFeedback, showMyOrders, customerInfo, signIn } = this.props
+    let { showWishList, quoteList, showMyAddress, showFeedback, showMyOrders, customerInfo, signIn } = this.props
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
@@ -31,7 +31,7 @@ class MyProfile extends React.Component {
           {/* <SettingItem icon={Icons.Language} title={__.t('Change Language')} onPress={showLanguages} /> */}
           {/* <SettingItem icon={Icons.Share} title={__.t('Share App')} onPress={this.shareApp} />
           <SettingItem icon={Icons.Star} title={__.t('Rate App')} onPress={this.rateApp} /> */}
-          {/* {customerInfo && <SettingItem icon={Icons.SignOut} title={__.t('Sign Out')} onPress={this.signOut} />} */}
+          {customerInfo && <SettingItem icon={Icons.Star} title='My quotes' onPress={quoteList} />}
         </ScrollView>
       </SafeAreaView>
     )

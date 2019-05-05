@@ -60,7 +60,7 @@ class Quote extends React.Component {
     return (
       (this.state.loader) ? 
       <View style={[style.container, style.horizontal]}>
-          <ActivityIndicator size="large" />
+          <ActivityIndicator size="large" color='#f8b020' />
       </View>
       
         :

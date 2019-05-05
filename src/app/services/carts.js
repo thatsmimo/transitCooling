@@ -84,6 +84,21 @@ export const deleteQuote = (itemId) => {
   })
 }
 
+
+export const myProfileQuoteList = (customerId) => {
+  return new Promise((resolve, reject) => {
+    axios.get(`${baseurl}/quoteapi/index/quotelistbycustomer/customer_id/${customerId}/`)
+      .then(function (response) {
+        if (response.status == 200) {
+          resolve(response.data)
+        } else {
+          reject(response);
+        }
+      })
+      .catch(reject)
+  })
+}
+
 export const quoteList = (quoteId) => {
   return new Promise((resolve, reject) => {
     axios.get(`${baseurl}/quoteapi/index/index/quote_id/${quoteId}`)

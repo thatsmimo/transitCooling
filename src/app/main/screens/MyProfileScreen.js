@@ -49,6 +49,7 @@ class MyProfileScreen extends React.Component {
         showMyAddress={() => navigation.navigate(Constants.Screen.MyAddress)}
         showFeedback={() => navigation.navigate(Constants.Screen.Feedback)}
         showMyOrders={() => navigation.navigate(Constants.Screen.MyOrders)}
+        quoteList={() => navigation.navigate(Constants.Screen.QuoteList)}
       />
     );
   }

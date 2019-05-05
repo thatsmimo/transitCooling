@@ -22,6 +22,8 @@ const Constants = {
     ShippingAddress: 'ShippingAddress',
     PaymentInfo: 'PaymentInfo',
     Quote: 'Qoute',
+    QuoteList: 'QouteList',
+    QuoteView: 'QuoteView',
     AddAddress: 'AddAddress',
     MyOrders: 'MyOrders',
     SubCategory: 'SubCategory',

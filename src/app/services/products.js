@@ -25,6 +25,21 @@ export const getProductsByCategory = (categoryId, categoryName, page, category =
   })
 }
 
+
+export const getAttributesList = (name) => {
+  return new Promise((resolve, reject) => {
+    Api.get("/V1/products/attributes/" + name, global.token)
+      .then((response) => {
+        if (response.statusCode == 200) {
+          resolve(response.body)
+        } else {
+          reject(response.body.message)
+        }
+      })
+      .catch(reject)
+  })
+}
+
 export const getProductsForHome = (categories) => {
   return new Promise((resolve, reject) => {
     var list = []
