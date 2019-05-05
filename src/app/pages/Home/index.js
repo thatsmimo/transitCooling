@@ -30,6 +30,7 @@ const TEXT5 = "Transit Cooling Solutions has developed and sourced the most comp
 class Home extends React.Component {
   state = {
     loading: true,
+    categories : [],
   }
 
   navigateToCategory = () => {
@@ -40,8 +41,13 @@ class Home extends React.Component {
     this.props.navigation.navigate(Constants.Screen.SubCategory)
   }
 
+
+
+  
+
   render() {
     let { categories, homeProducts, showDetail, openProductsByCategory } = this.props
+    console.log(categories)
     if (homeProducts.length == 0 && this.state.loading) {
       return <View style={styles.loading}>
         <ActivityIndicator size="large" />
@@ -54,14 +60,23 @@ class Home extends React.Component {
             <ImageBackground source={require('../../../../assets/images/main_bg.png')} style={styles.imageBackground} >
               <View style={[{paddingTop:15},styles.categoryText]}>
                 <View style={{flexDirection:'row'}}>
-                <Text style={styles.categoryButton}>TRANSIT BUS</Text>
-                  <Text style={styles.categoryButton}>COACH BUS</Text>
+                <Text onPress={() => {
+                  this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "TRANSIT BUS", id: 14 }})}
+                  } style={styles.categoryButton}>TRANSIT BUS</Text>
+                  
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "COACH BUS", id: 15 } }) }
+                  style={styles.categoryButton}>COACH BUS</Text>
                 </View>
-                <Text style={styles.categoryButton}>SCHOOL BUS</Text>
-                <Text style={styles.categoryButton}>COMPLETE RADIATORS</Text>
-                <Text style={styles.categoryButton}>CHARGE AIR COOLERS</Text>
-                <Text style={styles.categoryButton}>COMPLETE ASSEMBLIES</Text>
-                <Text style={styles.categoryButton}>HEATER PARTS</Text>
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "SCHOOL BUS", id: 16 } })}
+                  style={styles.categoryButton}>SCHOOL BUS</Text>
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "COMPLETE RADIATORS", id: 7 } })} 
+                  style={styles.categoryButton}>COMPLETE RADIATORS</Text>
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "CHARGE AIR COOLERS", id: 5 } })} 
+                  style={styles.categoryButton}>CHARGE AIR COOLERS</Text>
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "COMPLETE ASSEMBLIES", id: 6 } })}
+                  style={styles.categoryButton}>COMPLETE ASSEMBLIES</Text>
+                <Text onPress={() => this.props.navigation.navigate(Constants.Screen.ProductsByCategory, { category: { name: "HEATER PARTS", id: 13 } })} 
+                  style={styles.categoryButton}>HEATER PARTS</Text>
               </View>
               <View>
                 <Text style={styles.paragraph}>{TEXT1}</Text>

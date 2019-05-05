@@ -23,7 +23,7 @@ class ProductsByCategory extends React.Component {
   render() {
     let { isFetching, productsByCategory, selectedCategory, openProductsByCategory, showDetail } = this.props
     let products = productsByCategory.products;
-    console.log(selectedCategory)
+    console.log('probycat',this.props)
     return (
       <SafeAreaView style={styles.container}>
         {

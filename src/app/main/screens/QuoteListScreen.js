@@ -49,7 +49,7 @@ class QuoteListScreen extends Component {
                     </View>
                   </View>
                   <View style={{ position: "absolute", right: 15, top: 30 }}>
-                    <TouchableOpacity onPress={this.props.navigation.navigate('QuoteView')}>
+                    <TouchableOpacity onPress={() => this.props.navigation.navigate('QuoteView', { quoteviewId: item.quoteview_id})}>
                       <Text style={{ borderWidth: 1, padding: 7, borderColor: '#f8b020', color: '#fff', fontSize: 20 }}>View</Text>
                     </TouchableOpacity>
                   </View>

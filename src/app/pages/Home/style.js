@@ -15,7 +15,7 @@ export default StyleSheet.create({
   },
   imageBackground: {
     width: "100%",
-    height: 1600
+    height: 1450
   },
   imageBackground1:{
     marginTop : 15,

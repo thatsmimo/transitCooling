@@ -41,7 +41,6 @@ class NetworkUtils {
 
       axios(options)
       .then((response)=>{
-        console.log(response)
         resolve({ statusCode: response.status, body: response.data })
       })
       .catch((error)=>{

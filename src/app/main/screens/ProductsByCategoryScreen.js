@@ -10,6 +10,7 @@ class ProductsByCategoryScreen extends React.Component {
 
   render(){
     const {navigation} = this.props
+    console.log('new',this.props)
     return <ProductsByCategory
             navigation={navigation}
             showDetail={(product)=>navigation.navigate(Constants.Screen.Detail,{product})}
