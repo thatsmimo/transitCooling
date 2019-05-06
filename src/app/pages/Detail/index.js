@@ -36,18 +36,31 @@ class Detail extends React.Component {
 
   make = (attribute) => {
     var data = this.state.makeList.find(data => data.value === Utils.getCustomAttribute(attribute, "make"))
-    return data.label
+    if (typeof data != 'undefined') {
+      return data.label
+    } else {
+      return 'NO'
+    }
+    
   }
 
 
   model = (attribute) => {
     var data = this.state.modelList.find(data => data.value === Utils.getCustomAttribute(attribute, "model"))
-    return data.label
+    if (typeof data != 'undefined') {
+      return data.label
+    } else {
+      return 'NO'
+    }
   }
 
   core = (attribute) => {
     var data = this.state.coreList.find(data => data.value === Utils.getCustomAttribute(attribute, "core"))
-    return data.label
+    if (typeof data != 'undefined') {
+      return data.label
+    } else {
+      return 'NO'
+    }
   }
 
   render() {
@@ -69,7 +82,7 @@ class Detail extends React.Component {
               {/* <Text style={styles.price}>{Config.Currency.symbol}{product.price}</Text> */}
               <View>
                 <Text style={styles.price}>Description : {Utils.getCustomAttribute(product.custom_attributes, "description")}</Text>
-                <Text style={styles.price}>Note : {Utils.getCustomAttribute(product.custom_attributes, "notes")}</Text>
+                <Text style={styles.price}>Note : {(Utils.getCustomAttribute(product.custom_attributes, "notes")) ? Utils.getCustomAttribute(product.custom_attributes, "notes") : 'NOs' }</Text>
                 <Text style={styles.price}>Make : {this.make(product.custom_attributes)}</Text>
                 <Text style={styles.price}>Model : {this.model(product.custom_attributes)}</Text>
                 <Text style={styles.price}>Core : {this.core(product.custom_attributes)}</Text>

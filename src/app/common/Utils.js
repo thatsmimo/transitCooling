@@ -9,6 +9,8 @@ export const getCustomAttribute = (customAttributes,attribute)=>{
       if (item.attribute_code == attribute) {
         value = item.value
         return
+      } else {
+        return 'NO';
       }
     })
   }
